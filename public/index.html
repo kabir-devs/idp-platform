@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Platform &mdash; Internal Developer Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">&#9670;</span>
+      <div class="brand-text">
+        <h1>Platform</h1>
+        <p>Internal Developer Platform</p>
+      </div>
+    </div>
+
+    <button id="new-btn" class="new-btn">+ New deployment</button>
+
+    <div class="sidebar-label">Deployments</div>
+    <nav class="deployment-list" id="deployment-list">
+      <p class="sidebar-empty">Nothing shipped yet.</p>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <section id="empty-state" class="empty-state">
+      <span class="empty-mark">&#9670;</span>
+      <h2>No deployment selected</h2>
+      <p>Submit a repo, language, and target environment. The platform provisions the rest &mdash; namespace, image, rollout, ingress, and monitoring.</p>
+      <button class="new-btn new-btn--empty" id="empty-new-btn">+ New deployment</button>
+    </section>
+
+    <section id="form-panel" class="panel hidden">
+      <div class="panel-header">
+        <h2>New deployment</h2>
+        <p>Describe the service. The pipeline handles provisioning end to end.</p>
+      </div>
+
+      <form id="deploy-form" class="manifest-form">
+        <label class="field">
+          <span class="field-label">Repository</span>
+          <input type="text" name="repo" placeholder="github.com/acme/checkout-service" required />
+        </label>
+
+        <div class="field-row">
+          <label class="field">
+            <span class="field-label">Language</span>
+            <select name="language" required>
+              <option value="node">Node.js</option>
+              <option value="python">Python</option>
+              <option value="go">Go</option>
+              <option value="java">Java</option>
+              <option value="ruby">Ruby</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Environment</span>
+            <select name="environment" required>
+              <option value="development">Development</option>
+              <option value="staging">Staging</option>
+              <option value="production">Production</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-ghost" id="cancel-form-btn">Cancel</button>
+          <button type="submit" class="btn-primary">Submit to platform</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="detail-panel" class="panel hidden">
+      <div class="detail-header">
+        <div>
+          <div class="detail-eyebrow" id="detail-env"></div>
+          <h2 id="detail-repo"></h2>
+        </div>
+        <span class="status-badge" id="detail-status">pending</span>
+      </div>
+
+      <div class="resource-chips" id="resource-chips"></div>
+
+      <div class="rail" id="rail"></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
 
